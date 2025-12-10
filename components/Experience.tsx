@@ -36,9 +36,9 @@ const Experience: React.FC<ExperienceProps> = ({ controlsRef, images }) => {
 
     // 3. Apply Rotation (Smoothed)
     if (groupRef.current) {
-        const currentY = groupRef.current.rotation.y;
-        // Shortest path rotation logic could be added, but simple lerp works for limited range
-        groupRef.current.rotation.y = THREE.MathUtils.lerp(currentY, rotation, delta * 5);
+      const currentY = groupRef.current.rotation.y;
+      // Shortest path rotation logic could be added, but simple lerp works for limited range
+      groupRef.current.rotation.y = THREE.MathUtils.lerp(currentY, rotation, delta * 5);
     }
   });
 
@@ -66,12 +66,12 @@ const Experience: React.FC<ExperienceProps> = ({ controlsRef, images }) => {
       </group>
 
       {/* Post Processing */}
-      <EffectComposer disableNormalPass>
+      <EffectComposer enableNormalPass={false}>
         <Bloom 
-            luminanceThreshold={0.8} 
-            mipmapBlur 
-            intensity={1.5} 
-            radius={0.6}
+          luminanceThreshold={0.8} 
+          mipmapBlur 
+          intensity={1.5} 
+          radius={0.6}
         />
         <Vignette eskil={false} offset={0.1} darkness={1.1} />
         <Noise opacity={0.05} />
